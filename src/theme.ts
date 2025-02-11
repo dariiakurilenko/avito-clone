@@ -4,10 +4,10 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#c8f7d8', // Цвет для AppBar
+            main: '#c8f7d8',
         },
         secondary: {
-            main: '#ff4081', // Вторичный цвет
+            main: '#ff4081',
         },
     },
     typography: {
@@ -17,7 +17,7 @@ const theme = createTheme({
             fontSize: '1.5rem',
         },
         button: {
-            textTransform: 'none', // Отключаем автоматическое преобразование текста в верхний регистр
+            textTransform: 'none', 
         },
     },
 });

@@ -1,4 +1,4 @@
-// client/src/components/Header.tsx
+
 import React from 'react';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -20,7 +20,7 @@ const Header: React.FC = () => {
                     Список объявлений
                 </Button>
                 <Button color="inherit" component={Link} to="/form" startIcon={<AddCircleIcon />}>
-                    Добавить объявление
+                    Разместить объявление
                 </Button>
             </Toolbar>
         </AppBar>
