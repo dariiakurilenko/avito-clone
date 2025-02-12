@@ -14,9 +14,8 @@ interface CardProps {
 const DEFAULT_IMAGE =
   "https://previews.123rf.com/images/koblizeek/koblizeek2205/koblizeek220500309/186660515-no-image-vector-symbol-missing-available-icon-no-gallery-for-this-moment-placeholder.jpg";
 
-const Card: FC<CardProps> = ({ id, name, location, image, price, cost }) => {
+const Card: FC<CardProps> = ({ id, name, location, image, type }) => {
   const navigate = useNavigate();
-  const displayPrice = price || cost ? `${(price || cost)?.toLocaleString()} ₽` : "Цена не указана";
 
   return (
     <div
@@ -55,7 +54,7 @@ const Card: FC<CardProps> = ({ id, name, location, image, price, cost }) => {
       {/* Основная информация */}
       <div style={{ flex: 1, padding: "20px 40px", textAlign: "center" }}>
         <h3 style={{ margin: "0", fontSize: "2.5rem", color: "#333" }}>{name}</h3>
-        <p style={{ margin: "8px 0", fontWeight: "bold", color: "#25ba52", fontSize: "2rem" }}>{displayPrice}</p>
+        <p style={{ margin: "8px 0", fontWeight: "bold", color: "#25ba52", fontSize: "2rem" }}>{type}</p>
         <p style={{ margin: "8px 0", color: "#555", fontSize: "1.5rem" }}>{location}</p>
       </div>
 

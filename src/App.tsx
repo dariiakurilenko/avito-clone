@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer'; 
 import CardPage from './pages/card-page/CardPage';
 import theme from './theme'; 
+import ProductPage from './pages/product-page/ProductPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="*" element={<CardPage />} />
           <Route path="/list" element={<CardPage />} />
+          <Route path="/item/:id" element={<ProductPage />} />
         </Routes>
         <Footer />
       </Router>

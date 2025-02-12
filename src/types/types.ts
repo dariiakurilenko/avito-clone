@@ -16,6 +16,7 @@ export interface Item {
     experience?: number;
     cost?: number;
     workSchedule?: string;
+    image?: string;
   }
 
   export interface CardType {
