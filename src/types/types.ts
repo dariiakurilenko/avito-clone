@@ -20,6 +20,7 @@ export interface Item {
   }
 
   export interface CardType {
+    image: string | undefined;
     id: number;
     name: string;
     location: string;

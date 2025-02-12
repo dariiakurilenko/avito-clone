@@ -95,7 +95,7 @@ const CardPage: React.FC = () => {
         Список объявлений
       </Typography>
 
-      {/* Контейнер для поиска, фильтра и кнопки */}
+      {/* Контейнер для поиска и фильтра */}
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
         {/* Поле поиска */}
         <TextField
@@ -118,42 +118,41 @@ const CardPage: React.FC = () => {
 
         {/* Фильтр по категориям */}
         <FormControl sx={{ minWidth: 150, ml: 2 }}>
-  <InputLabel sx={{ color: "darkgreen" }}>Категория</InputLabel>
-  <Select
-    value={category}
-    onChange={(e) => setCategory(e.target.value)}
-    variant="outlined"
-    sx={{
-      bgcolor: "white", // Белый фон
-      color: "darkgreen", // Основной текст темно-зеленый
-      "& .MuiOutlinedInput-notchedOutline": {
-        borderColor: "darkgreen", // Обводка темно-зелёная
-      },
-      "&:hover .MuiOutlinedInput-notchedOutline": {
-        borderColor: "#1a632d", // Темнее при наведении
-      },
-      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        borderColor: "#0f4d1f", // Ещё темнее при фокусе
-      },
-    }}
-  >
-    {CATEGORIES.map((cat) => (
-      <MenuItem
-        key={cat}
-        value={cat}
-        sx={{
-          color: "darkgreen", // Текст в выпадающем списке темно-зеленый
-          "&:hover": {
-            bgcolor: "#e6f4ea", // Светло-зелёный фон при наведении
-          },
-        }}
-      >
-        {cat}
-      </MenuItem>
-    ))}
-  </Select>
-</FormControl>
-
+          <InputLabel sx={{ color: "darkgreen" }}>Категория</InputLabel>
+          <Select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            variant="outlined"
+            sx={{
+              bgcolor: "white", // Белый фон
+              color: "darkgreen", // Основной текст темно-зеленый
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "darkgreen", // Обводка темно-зелёная
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#1a632d", // Темнее при наведении
+              },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#0f4d1f", // Ещё темнее при фокусе
+              },
+            }}
+          >
+            {CATEGORIES.map((cat) => (
+              <MenuItem
+                key={cat}
+                value={cat}
+                sx={{
+                  color: "darkgreen", // Текст в выпадающем списке темно-зеленый
+                  "&:hover": {
+                    bgcolor: "#e6f4ea", // Светло-зелёный фон при наведении
+                  },
+                }}
+              >
+                {cat}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
         {/* Кнопка "Разместить объявление" */}
         <Button

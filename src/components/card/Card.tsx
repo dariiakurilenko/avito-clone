@@ -5,7 +5,7 @@ interface CardProps {
   id: number;
   name: string;
   location: string;
-  type: "Недвижимость" | "Авто" | "Услуги";
+  type?: "Недвижимость" | "Авто" | "Услуги";
   image?: string;
   price?: number; // Цена только для недвижимости и услуг
   cost?: number; // Стоимость только для услуг
@@ -14,14 +14,14 @@ interface CardProps {
 const DEFAULT_IMAGE =
   "https://previews.123rf.com/images/koblizeek/koblizeek2205/koblizeek220500309/186660515-no-image-vector-symbol-missing-available-icon-no-gallery-for-this-moment-placeholder.jpg";
 
-const Card: FC<CardProps> = ({ id, name, location, image, type }) => {
+const Card: FC<CardProps> = ({ id, name, location, image, type  }) => {
   const navigate = useNavigate();
 
   return (
     <div
       style={{
         width: "100%", 
-        maxWidth: "1300px",
+        maxWidth: "1200px",
         padding: "20px",
         margin: "30px auto",
         cursor: "pointer",

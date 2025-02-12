@@ -82,7 +82,7 @@ const Product: FC<Item> = (props) => {
   variant="contained"
   color="primary"
   startIcon={<EditIcon />}
-  onClick={() => navigate(`/form?id=${id}`)} // ✅ Передаем id в URL
+  onClick={() => navigate(`/form?id=${id}`)} // 
   sx={{ borderRadius: "25px", px: 3, py: 1 }}
 >
   Редактировать
