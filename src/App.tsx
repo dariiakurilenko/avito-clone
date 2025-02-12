@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import CardPage from './pages/card-page/CardPage';
 import theme from './theme'; 
 import ProductPage from './pages/product-page/ProductPage';
+import NewAdPage from './pages/new-ad-page/NewAdPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="*" element={<CardPage />} />
           <Route path="/list" element={<CardPage />} />
+          <Route path="/form" element={<NewAdPage />} />
           <Route path="/item/:id" element={<ProductPage />} />
         </Routes>
         <Footer />
