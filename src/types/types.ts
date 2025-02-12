@@ -3,7 +3,7 @@ export interface Item {
     name: string;
     description: string;
     location: string;
-    type: string;
+    type?: string;
     propertyType?: string;
     area?: number;
     rooms?: number;
@@ -16,4 +16,13 @@ export interface Item {
     experience?: number;
     cost?: number;
     workSchedule?: string;
+  }
+
+  export interface CardType {
+    id: number;
+    name: string;
+    location: string;
+    type?: string;
+    price?: number;
+    cost?: number;
   }

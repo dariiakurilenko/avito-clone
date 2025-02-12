@@ -11,6 +11,7 @@ function App() {
       <Router>
         <Header />
         <Routes>
+          <Route path="*" element={<CardPage />} />
           <Route path="/list" element={<CardPage />} />
         </Routes>
         <Footer />

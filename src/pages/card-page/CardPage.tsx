@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { getItems } from '../../api/api';
-import { Item } from '../../types/types';
+import React, { useEffect, useState } from "react";
+import { getItems } from "../../api/api";
+import { CardType } from "../../types/types";
+import Card from "../../components/card/Card";
 
 const CardPage: React.FC = () => {
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<CardType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -21,17 +22,25 @@ const CardPage: React.FC = () => {
     fetchItems();
   }, []);
 
-  
+  if (loading) return <p>Загрузка объявлений...</p>;
+  if (!items.length) return <p>Объявлений пока нет</p>;
+
   return (
     <div>
       <h2>Список объявлений</h2>
-      {items.map((item) => (
-        <div key={item.id}>
-          <h3>{item.name}</h3>
-          <p>{item.description}</p> 
-          <p>{item.location}</p>
-        </div>
-      ))}
+      <div>
+        {items.map((item) => (
+          <Card
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            location={item.location}
+            price={item.price}
+            cost={item.cost}
+            type={item.type}
+          />
+        ))}
+      </div>
     </div>
   );
 };
