@@ -71,90 +71,15 @@ const CardPage: React.FC = () => {
     page * ITEMS_PER_PAGE
   );
 
-  if (loading)
-    return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="300px">
-        <Typography variant="h5" fontWeight="bold" color="primary">
-          ⏳ Загрузка объявлений...
-        </Typography>
-      </Box>
-    );
-
-  if (!items.length)
-    return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="300px">
-        <Typography variant="h5" fontWeight="bold" color="text.secondary">
-          📭 Объявлений пока нет
-        </Typography>
-      </Box>
-    );
-
   return (
     <Container maxWidth="md" sx={{ mt: 4 }}>
+      {/* Заголовок и кнопка */}
       <Typography variant="h4" align="center" gutterBottom>
         Список объявлений
       </Typography>
 
-      {/* Контейнер для поиска и фильтра */}
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
-        {/* Поле поиска */}
-        <TextField
-          label="Поиск по названию"
-          variant="outlined"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          sx={{
-            flexGrow: 1,
-            maxWidth: 400,
-            "& .MuiOutlinedInput-root": {
-              "& fieldset": { borderColor: "green" },
-              "&:hover fieldset": { borderColor: "darkgreen" },
-              "&.Mui-focused fieldset": { borderColor: "green", borderWidth: 2 },
-            },
-            "& .MuiInputLabel-root": { color: "green" },
-            "& .MuiInputLabel-root.Mui-focused": { color: "darkgreen" },
-          }}
-        />
-
-        {/* Фильтр по категориям */}
-        <FormControl sx={{ minWidth: 150, ml: 2 }}>
-          <InputLabel sx={{ color: "darkgreen" }}>Категория</InputLabel>
-          <Select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            variant="outlined"
-            sx={{
-              bgcolor: "white", // Белый фон
-              color: "darkgreen", // Основной текст темно-зеленый
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "darkgreen", // Обводка темно-зелёная
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#1a632d", // Темнее при наведении
-              },
-              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#0f4d1f", // Ещё темнее при фокусе
-              },
-            }}
-          >
-            {CATEGORIES.map((cat) => (
-              <MenuItem
-                key={cat}
-                value={cat}
-                sx={{
-                  color: "darkgreen", // Текст в выпадающем списке темно-зеленый
-                  "&:hover": {
-                    bgcolor: "#e6f4ea", // Светло-зелёный фон при наведении
-                  },
-                }}
-              >
-                {cat}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        {/* Кнопка "Разместить объявление" */}
+      {/* Кнопка размещения объявлений всегда видна */}
+      <Box display="flex" justifyContent="flex-start" alignItems="center" mb={3}>
         <Button
           variant="contained"
           color="success"
@@ -172,9 +97,79 @@ const CardPage: React.FC = () => {
         </Button>
       </Box>
 
+      {/* Показываем фильтрацию и поиск только если есть объявления */}
+      {items.length > 0 && (
+        <>
+          <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
+            {/* Поле поиска */}
+            <TextField
+              label="Поиск по названию"
+              variant="outlined"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              sx={{
+                flexGrow: 1,
+                maxWidth: 400,
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": { borderColor: "green" },
+                  "&:hover fieldset": { borderColor: "darkgreen" },
+                  "&.Mui-focused fieldset": { borderColor: "green", borderWidth: 2 },
+                },
+                "& .MuiInputLabel-root": { color: "green" },
+                "& .MuiInputLabel-root.Mui-focused": { color: "darkgreen" },
+              }}
+            />
+
+            {/* Фильтр по категориям */}
+            <FormControl sx={{ minWidth: 150, ml: 2 }}>
+              <InputLabel sx={{ color: "darkgreen" }}>Категория</InputLabel>
+              <Select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                variant="outlined"
+                sx={{
+                  bgcolor: "white", // Белый фон
+                  color: "darkgreen", // Основной текст темно-зеленый
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "darkgreen", // Обводка темно-зелёная
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#1a632d", // Темнее при наведении
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#0f4d1f", // Ещё темнее при фокусе
+                  },
+                }}
+              >
+                {CATEGORIES.map((cat) => (
+                  <MenuItem
+                    key={cat}
+                    value={cat}
+                    sx={{
+                      color: "darkgreen", // Текст в выпадающем списке темно-зеленый
+                      "&:hover": {
+                        bgcolor: "#e6f4ea", // Светло-зелёный фон при наведении
+                      },
+                    }}
+                  >
+                    {cat}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
+        </>
+      )}
+
       {/* Список карточек */}
       <Box display="flex" flexDirection="column" gap={2}>
-        {displayedItems.length > 0 ? (
+        {loading ? (
+          <Box display="flex" justifyContent="center" alignItems="center" height="300px">
+            <Typography variant="h5" fontWeight="bold" color="primary">
+              ⏳ Загрузка объявлений...
+            </Typography>
+          </Box>
+        ) : displayedItems.length > 0 ? (
           displayedItems.map((item) => (
             <Card
               key={item.id}
@@ -188,9 +183,9 @@ const CardPage: React.FC = () => {
             />
           ))
         ) : (
-          <Box display="flex" justifyContent="center" alignItems="center" height="200px">
+          <Box display="flex" justifyContent="center" alignItems="center" height="300px">
             <Typography variant="h5" fontWeight="bold" color="text.secondary">
-              🔍 Ничего не найдено...
+              📭 Объявлений пока нет
             </Typography>
           </Box>
         )}

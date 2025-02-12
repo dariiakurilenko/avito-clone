@@ -79,15 +79,25 @@ const Product: FC<Item> = (props) => {
           {/* Кнопка редактирования */}
           <Box mt={3}>
           <Button
-  variant="contained"
-  color="primary"
-  startIcon={<EditIcon />}
-  onClick={() => navigate(`/form?id=${id}`)} // 
-  sx={{ borderRadius: "25px", px: 3, py: 1 }}
->
-  Редактировать
-</Button>
+            variant="contained"
+            color="primary"
+            startIcon={<EditIcon />}
+            onClick={() => navigate(`/form?id=${id}`)} // 
+            sx={{ borderRadius: "25px", px: 3, py: 1 }}
+            >
+              Редактировать
+          </Button>
+          </Box>
 
+          <Box mt={3}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => navigate(`/list`)} // 
+            sx={{ borderRadius: "25px", px: 3, py: 1 }}
+            >
+              Назад
+          </Button>
           </Box>
         </CardContent>
       </Box>
