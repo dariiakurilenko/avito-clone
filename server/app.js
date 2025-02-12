@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const ItemTypes = {
@@ -8,6 +9,8 @@ const ItemTypes = {
 };
 
 const app = express();
+// Use CORS middleware
+app.use(cors());
 app.use(bodyParser.json());
 
 // In-memory хранилище для объявлений
