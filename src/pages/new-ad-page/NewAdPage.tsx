@@ -58,7 +58,7 @@ const NewAdPage: React.FC = () => {
       const fetchItem = async () => {
         try {
           const data = await getItemById(Number(id));
-          setFormData(data); // Просто подставляем данные в форму
+          setFormData(data); 
         } catch (error) {
           console.error("❌ Ошибка загрузки объявления:", error);
         } finally {

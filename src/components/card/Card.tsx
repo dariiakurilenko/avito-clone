@@ -65,7 +65,7 @@ const Card: FC<CardProps> = ({ id, name, location, image, type  }) => {
           navigate(`/item/${id}`);
         }}
         style={{
-          padding: "40px 80px",
+          padding: "20px 40px",
           fontSize: "1.5rem",
           backgroundColor: "#25ba52",
           color: "#fff",

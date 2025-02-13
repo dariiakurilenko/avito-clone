@@ -47,7 +47,7 @@ const CardPage: React.FC = () => {
 
   // Фильтрация по названию и категории
   useEffect(() => {
-    setPage(1); // Сбрасываем на первую страницу при изменении запроса
+    setPage(1); 
 
     let filtered = items;
 
@@ -72,14 +72,14 @@ const CardPage: React.FC = () => {
   );
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
+    <Container maxWidth="lg" sx={{ mt: 4 }}>
       {/* Заголовок и кнопка */}
       <Typography variant="h4" align="center" gutterBottom>
         Список объявлений
       </Typography>
 
-      {/* Кнопка размещения объявлений всегда видна */}
-      <Box display="flex" justifyContent="flex-start" alignItems="center" mb={3}>
+      
+      <Box display="flex" justifyContent="flex-end" alignItems="center" mb={5}>
         <Button
           variant="contained"
           color="success"
@@ -89,6 +89,8 @@ const CardPage: React.FC = () => {
             ml: 2,
             bgcolor: "#25ba52",
             borderRadius: "25px",
+            padding: "15px 25px",
+            fontSize: "1.5rem",
             paddingX: 3,
             "&:hover": { bgcolor: "#1e9c45" },
           }}
@@ -97,7 +99,7 @@ const CardPage: React.FC = () => {
         </Button>
       </Box>
 
-      {/* Показываем фильтрацию и поиск только если есть объявления */}
+      
       {items.length > 0 && (
         <>
           <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
@@ -128,16 +130,16 @@ const CardPage: React.FC = () => {
                 onChange={(e) => setCategory(e.target.value)}
                 variant="outlined"
                 sx={{
-                  bgcolor: "white", // Белый фон
-                  color: "darkgreen", // Основной текст темно-зеленый
+                  bgcolor: "white", 
+                  color: "darkgreen", 
                   "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "darkgreen", // Обводка темно-зелёная
+                    borderColor: "darkgreen", 
                   },
                   "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#1a632d", // Темнее при наведении
+                    borderColor: "#1a632d", 
                   },
                   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#0f4d1f", // Ещё темнее при фокусе
+                    borderColor: "#0f4d1f", 
                   },
                 }}
               >
@@ -146,9 +148,9 @@ const CardPage: React.FC = () => {
                     key={cat}
                     value={cat}
                     sx={{
-                      color: "darkgreen", // Текст в выпадающем списке темно-зеленый
+                      color: "darkgreen", 
                       "&:hover": {
-                        bgcolor: "#e6f4ea", // Светло-зелёный фон при наведении
+                        bgcolor: "#e6f4ea", 
                       },
                     }}
                   >
