@@ -56,6 +56,9 @@ const Card: FC<CardProps> = ({ id, name, location, image, type  }) => {
           border: "2px solid #ddd",
           flexShrink: 0,
         }}
+        onError={() => {
+          console.log("Error upload img");
+        }}
       />
 
       {/* Основная информация */}
