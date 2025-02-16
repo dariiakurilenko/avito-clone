@@ -12,8 +12,8 @@ const DEFAULT_IMAGE =
 const Product: FC<Item> = (props) => {
   const navigate = useNavigate();
   const { id, name, description, location, type, image, price, cost, 
-          propertyType, area, rooms, brand, model, year, mileage, 
-          serviceType, experience, workSchedule } = props;
+          area, rooms,  year, mileage, 
+          experience, workSchedule } = props;
 
   // Функция для удаления объявления
   const handleDelete = async () => {

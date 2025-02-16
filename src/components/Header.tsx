@@ -1,8 +1,15 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Box } from "@mui/material";
 import StorefrontIcon from "@mui/icons-material/Storefront"; // Иконка магазина
+import { useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    navigate('/list')
+  }
+  
   return (
     <AppBar
       position="static"
@@ -13,8 +20,8 @@ const Header: React.FC = () => {
     >
       <Toolbar sx={{ minHeight: 64 }}> {/* Увеличенная высота */}
         {/* Логотип + Текст */}
-        <Box display="flex" alignItems="center">
-          <StorefrontIcon sx={{ fontSize: 30, mr: 1 }} /> {/* Иконка магазина */}
+        <Box display="flex" alignItems="center" onClick={handleLogoClick} sx={{cursor: "pointer"}}>
+          <StorefrontIcon sx={{ fontSize: 30, mr: 1 }} /> 
           <Typography
             variant="h5"
             sx={{
