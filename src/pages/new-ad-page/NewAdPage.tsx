@@ -62,6 +62,7 @@ const NewAdPage: React.FC = () => {
           setFormData(data); 
         } catch (error) {
           console.error("❌ Ошибка загрузки объявления:", error);
+          alert("❌ Ошибка загрузки объявления")
         } finally {
           setLoading(false);
         }
@@ -330,7 +331,7 @@ const NewAdPage: React.FC = () => {
             )}
 
             <Box display="flex" justifyContent="space-between">
-              <Button variant="outlined" startIcon={<ArrowBackIcon />} onClick={handleBack}>
+              <Button variant="contained" startIcon={<ArrowBackIcon />} onClick={handleBack}>
                 Назад
               </Button>
 
