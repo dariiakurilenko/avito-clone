@@ -15,11 +15,13 @@ import {
   Step,
   StepLabel,
   CircularProgress,
+  FormHelperText,
   SelectChangeEvent,
 } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
+// Список категорий и других данных
 const categories = ["Недвижимость", "Авто", "Услуги"];
 const propertyTypes = ["Квартира", "Дом", "Коттедж"];
 const carBrands = ["Toyota", "BMW", "Mercedes"];
@@ -53,16 +55,24 @@ const NewAdPage: React.FC = () => {
     workSchedule: "",
   });
 
+  const [errors, setErrors] = useState({
+    name: "",
+    description: "",
+    location: "",
+    image: "",
+    type: "",
+  });
+
   // Загружаем данные при редактировании
   useEffect(() => {
     if (isEditing) {
       const fetchItem = async () => {
         try {
           const data = await getItemById(Number(id));
-          setFormData(data); 
+          setFormData(data);
         } catch (error) {
           console.error("❌ Ошибка загрузки объявления:", error);
-          alert("❌ Ошибка загрузки объявления")
+          alert("❌ Ошибка загрузки объявления");
         } finally {
           setLoading(false);
         }
@@ -70,7 +80,6 @@ const NewAdPage: React.FC = () => {
       fetchItem();
     }
   }, [id, isEditing]);
-  
 
   // Обновление полей формы
   const handleChange = (e: React.ChangeEvent<{ name?: string; value: unknown }>) => {
@@ -84,10 +93,11 @@ const NewAdPage: React.FC = () => {
   const handleChangeSelect = (e: SelectChangeEvent<string>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
-       ...prev,
-       [name as string]: value,
+      ...prev,
+      [name as string]: value,
     }));
- };
+  };
+  
 
   // Переход к следующему шагу
   const handleNext = () => setActiveStep((prev) => prev + 1);
@@ -95,9 +105,26 @@ const NewAdPage: React.FC = () => {
   // Возврат к предыдущему шагу
   const handleBack = () => setActiveStep((prev) => prev - 1);
 
+  // Обработка ошибок валидации
+  const validate = () => {
+    const newErrors = {
+      name: formData.name ? "" : "Название обязательно",
+      description: formData.description ? "" : "Описание обязательно",
+      location: formData.location ? "" : "Локация обязательна",
+      image: formData.image || formData.image === "" ? "" : "Ссылка на изображение обязательна",
+      type: formData.type ? "" : "Категория обязательна",
+    };
+    setErrors(newErrors);
+    return Object.values(newErrors).every((error) => !error);
+  };
+
   // Отправка формы (Создание / Обновление объявления)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!validate()) {
+      return;
+    }
 
     try {
       if (isEditing) {
@@ -154,6 +181,8 @@ const NewAdPage: React.FC = () => {
               onChange={handleChange}
               required
               sx={{ mb: 2 }}
+              error={!!errors.name}
+              helperText={errors.name}
             />
 
             <TextField
@@ -166,6 +195,8 @@ const NewAdPage: React.FC = () => {
               multiline
               rows={3}
               sx={{ mb: 2 }}
+              error={!!errors.description}
+              helperText={errors.description}
             />
 
             <TextField
@@ -176,6 +207,8 @@ const NewAdPage: React.FC = () => {
               onChange={handleChange}
               required
               sx={{ mb: 2 }}
+              error={!!errors.location}
+              helperText={errors.location}
             />
 
             <TextField
@@ -185,10 +218,12 @@ const NewAdPage: React.FC = () => {
               value={formData.image}
               onChange={handleChange}
               sx={{ mb: 2 }}
+              error={!!errors.image}
+              helperText={errors.image}
             />
 
             {/* Выбор категории */}
-            <FormControl fullWidth sx={{ mb: 2 }}>
+            <FormControl fullWidth sx={{ mb: 2 }} error={!!errors.type}>
               <InputLabel>Категория</InputLabel>
               <Select name="type" value={formData.type} onChange={handleChangeSelect} required>
                 {categories.map((cat) => (
@@ -197,6 +232,7 @@ const NewAdPage: React.FC = () => {
                   </MenuItem>
                 ))}
               </Select>
+              <FormHelperText>{errors.type}</FormHelperText>
             </FormControl>
 
             {/* Кнопка "Далее" */}

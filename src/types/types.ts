@@ -3,7 +3,7 @@ export interface Item {
     name: string;
     description: string;
     location: string;
-    type?: string;
+    type: "Недвижимость" | "Авто" | "Услуги";
     propertyType?: string;
     area?: number;
     rooms?: number;
@@ -20,11 +20,11 @@ export interface Item {
   }
 
   export interface CardType {
-    image: string | undefined;
+    image?: string | undefined;
     id: number;
     name: string;
     location: string;
-    type?: "Недвижимость" | "Авто" | "Услуги";
+    type: "Недвижимость" | "Авто" | "Услуги";
     price?: number;
     cost?: number;
   }
