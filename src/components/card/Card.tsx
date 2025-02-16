@@ -11,11 +11,17 @@ interface CardProps {
   cost?: number; // Стоимость только для услуг
 }
 
+
+
 const DEFAULT_IMAGE =
   "https://previews.123rf.com/images/koblizeek/koblizeek2205/koblizeek220500309/186660515-no-image-vector-symbol-missing-available-icon-no-gallery-for-this-moment-placeholder.jpg";
 
 const Card: FC<CardProps> = ({ id, name, location, image, type  }) => {
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/item/${id}`);
+  }
 
   return (
     <div
@@ -37,6 +43,7 @@ const Card: FC<CardProps> = ({ id, name, location, image, type  }) => {
       }}
       onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.02)")}
       onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+      onClick={handleClick}
     >
       <img
         src={image || DEFAULT_IMAGE}
