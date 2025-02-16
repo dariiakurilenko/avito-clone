@@ -15,6 +15,7 @@ import {
   Step,
   StepLabel,
   CircularProgress,
+  SelectChangeEvent,
 } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -68,6 +69,7 @@ const NewAdPage: React.FC = () => {
       fetchItem();
     }
   }, [id, isEditing]);
+  
 
   // Обновление полей формы
   const handleChange = (e: React.ChangeEvent<{ name?: string; value: unknown }>) => {
@@ -77,6 +79,14 @@ const NewAdPage: React.FC = () => {
       [name as string]: value,
     }));
   };
+
+  const handleChangeSelect = (e: SelectChangeEvent<string>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+       ...prev,
+       [name as string]: value,
+    }));
+ };
 
   // Переход к следующему шагу
   const handleNext = () => setActiveStep((prev) => prev + 1);
@@ -179,7 +189,7 @@ const NewAdPage: React.FC = () => {
             {/* Выбор категории */}
             <FormControl fullWidth sx={{ mb: 2 }}>
               <InputLabel>Категория</InputLabel>
-              <Select name="type" value={formData.type} onChange={handleChange} required>
+              <Select name="type" value={formData.type} onChange={handleChangeSelect} required>
                 {categories.map((cat) => (
                   <MenuItem key={cat} value={cat}>
                     {cat}
@@ -203,7 +213,7 @@ const NewAdPage: React.FC = () => {
               <>
                 <FormControl fullWidth sx={{ mb: 2 }}>
                   <InputLabel>Тип недвижимости</InputLabel>
-                  <Select name="propertyType" value={formData.propertyType} onChange={handleChange} required>
+                  <Select name="propertyType" value={formData.propertyType} onChange={handleChangeSelect} required>
                     {propertyTypes.map((type) => (
                       <MenuItem key={type} value={type}>
                         {type}
@@ -251,7 +261,7 @@ const NewAdPage: React.FC = () => {
               <>
                 <FormControl fullWidth sx={{ mb: 2 }}>
                   <InputLabel>Марка</InputLabel>
-                  <Select name="brand" value={formData.brand} onChange={handleChange} required>
+                  <Select name="brand" value={formData.brand} onChange={handleChangeSelect} required>
                     {carBrands.map((brand) => (
                       <MenuItem key={brand} value={brand}>
                         {brand}
@@ -297,7 +307,7 @@ const NewAdPage: React.FC = () => {
               <>
                 <FormControl fullWidth sx={{ mb: 2 }}>
                   <InputLabel>Тип услуги</InputLabel>
-                  <Select name="serviceType" value={formData.serviceType} onChange={handleChange} required>
+                  <Select name="serviceType" value={formData.serviceType} onChange={handleChangeSelect} required>
                     {serviceTypes.map((type) => (
                       <MenuItem key={type} value={type}>
                         {type}

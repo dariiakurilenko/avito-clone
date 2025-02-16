@@ -24,7 +24,7 @@ export interface Item {
     id: number;
     name: string;
     location: string;
-    type?: string;
+    type?: "Недвижимость" | "Авто" | "Услуги";
     price?: number;
     cost?: number;
   }
