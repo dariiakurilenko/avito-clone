@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import Header from './components/Header'; 
 import Footer from './components/Footer'; 
@@ -13,7 +13,7 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="*" element={<CardPage />} />
+          <Route path="/" element={<Navigate to="/list" />} />
           <Route path="/list" element={<CardPage />} />
           <Route path="/form" element={<NewAdPage />} />
           <Route path="/item/:id" element={<ProductPage />} />
